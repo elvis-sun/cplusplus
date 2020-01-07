@@ -1,3 +1,9 @@
+/**
+ * 测试索引访问跟迭代器访问的性能差距
+ * 
+ * 
+ * 作者: elvis sun
+ * */
 #include <iostream>
 #include <vector>
 #include <chrono>
@@ -41,3 +47,9 @@ int main()
 
     return 0;
 }
+/** 运行结果
+ * 1234567890
+ * 66
+ * 1234567890
+ * 11
+ * */
