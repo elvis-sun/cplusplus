@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+using namespace std;
+
+void indexTraverse(const vector<int> &vec)
+{
+    vector<int>::size_type length = vec.size();
+    for (vector<int>::size_type i=0; i<length; ++i)
+    {
+        cout << vec[i];
+    }
+    cout << endl;
+}
+
+void iteratorTraverse(const vector<int> &vec)
+{
+    for (vector<int>::const_iterator itr=vec.cbegin(); itr!=vec.cend(); ++itr)
+    {
+        cout << *itr;
+    }
+    cout << endl;
+}
+
+using ARG = const vector<int> &;
+using PFUN = void (*)(ARG);
+void check(PFUN pFun, ARG arg)
+{
+    auto start = chrono::system_clock::now();
+    pFun(arg);
+    auto end = chrono::system_clock::now();
+    cout << chrono::duration_cast<chrono::microseconds>(end - start).count() << endl;
+}
+
+int main()
+{
+    vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+    check(indexTraverse, vec);
+    check(iteratorTraverse, vec);
+
+    return 0;
+}
